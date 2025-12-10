@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LA Desirability Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: radial-gradient(circle at top, #1b1f3b, #070a1f);
+  color: #e5e7eb;
+}
+
+header {
+  text-align: center;
+  padding: 28px;
+  border-bottom: 1px solid #1f2937;
+}
+
+header h1 {
+  margin-bottom: 6px;
+}
+
+header p {
+  color: #9ca3af;
+}
+
+section {
+  padding: 32px;
+}
+
+.viz {
+  margin-bottom: 45px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #1b2045, #0b0f2f);
+  padding: 18px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.4);
+}
+
+h2 {
+  margin-bottom: 14px;
+  color: #f9fafb;
+}
+
+.method, .sources {
+  background: linear-gradient(145deg, #14183a, #0b0f2f);
+  border-radius: 18px;
+  padding: 26px;
+  margin-bottom: 30px;
+}
+
+pre {
+  background: #020617;
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.sources p {
+  color: #cbd5f5;
+  font-size: .85rem;
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: .75rem;
+  color: #9ca3af;
+  border-top: 1px solid #1f2937;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Los Angeles ZIP Code Desirability Dashboard</h1>
+  <p>Visualization of affordability, income, education, and livability</p>
+</header>
+
+<section>
+
+<!-- VISUAL 1 -->
+<div class="viz">
+<div class='tableauPlaceholder' id='viz1765389142587'></div>
+</div>
+
+<!-- VISUAL 2 -->
+<div class="viz">
+<iframe src="https://public.tableau.com/views/ranking_17653889599600/ranking?:showVizHome=no"
+        width="100%" height="800" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- VISUAL 3 -->
+<div class="viz">
+<div class='tableauPlaceholder' id='viz1765389193095'></div>
+</div>
+
+<!-- VISUAL 4 -->
+<div class="viz">
+<div class='tableauPlaceholder' id='viz1765387206930'></div>
+</div>
+
+<!-- VISUAL 5 -->
+<div class="viz">
+<div class='tableauPlaceholder' id='viz1765389214209'></div>
+</div>
+
+</section>
+
+
+<!-- METHODOLOGY -->
+<section class="method">
+
+<h2>Methodology</h2>
+<pre>
+Desirability Score =
+
+(Bachelor’s Degree × 0.20)
++ Income × 0.25
++ Home Value × 0.20
++ Rent × 0.10
++ Parks × 0.10
++ Poverty × 0.15
+</pre>
+
+<ul>
+<li>Higher income, education, home value, and park access increase desirability.</li>
+<li>Higher rent decreases desirability due to affordability pressure.</li>
+<li>Higher poverty decreases desirability due to economic instability.</li>
+<li>Home value balances housing quality against cost burden.</li>
+</ul>
+
+<p><strong>Null Handling:</strong> Missing values were treated as zero to prevent artificial inflation due to incomplete data.</p>
+
+</section>
+
+
+<!-- SOURCES -->
+<section class="sources">
+<h2>Sources (APA)</h2>
+
+<p>U.S. Census Bureau. (2024). Median gross income (Table S1901). American Community Survey.</p>
+<p>U.S. Census Bureau. (2024). Median home value (Table B25077). American Community Survey.</p>
+<p>U.S. Census Bureau. (2024). Population below poverty level. American Community Survey.</p>
+<p>U.S. Census Bureau. (2024). Total population. American Community Survey.</p>
+<p>U.S. Census Bureau. (2024). Median gross rent (Table B25064). American Community Survey.</p>
+<p>Los Angeles County Department of Parks and Recreation. (2024). Parks & open space dataset.</p>
+
+</section>
+
+<footer>
+Built as an executive analytics dashboard | Tableau + Census + LA County Data
+</footer>
+
+
+<!-- TABLEAU SCRIPTS -->
+<script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+
+<script>
+function embedViz(id, params, height="800px") {
+  var div = document.getElementById(id);
+  var obj = document.createElement("object");
+  obj.className="tableauViz";
+  obj.style.width="100%";
+  obj.style.height=height;
+  obj.innerHTML=params;
+  div.appendChild(obj);
+}
+
+embedViz("viz1765389142587", `
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+<param name='path' value='shared/SK453GPPS'/>
+<param name='toolbar' value='yes'/>
+`);
+
+embedViz("viz1765389193095", `
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+<param name='name' value='PopulationHeatmap/populationheatmap'/>
+<param name='toolbar' value='yes'/>
+`);
+
+embedViz("viz1765387206930", `
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+<param name='name' value='Variance_17653839275450/boxplot'/>
+<param name='toolbar' value='yes'/>
+`, "900px");
+
+embedViz("viz1765389214209", `
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+<param name='name' value='Income_17653838160590/income'/>
+<param name='toolbar' value='yes'/>
+`);
+
+</script>
+
+</body>
+</html>
